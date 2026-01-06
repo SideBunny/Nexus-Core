@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selector</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      background-color: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .card:hover .overlay {
+      opacity: 0;
+    }
+
+    .dialog-container {
+      position: relative;
+      margin-top: 40px;
+      width: 600px;
+      height: 120px;
+    }
+
+    .dialog-background {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .dialog-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      white-space: nowrap;
+      color: white;
+      pointer-events: none;
+    }
+
+    .volver-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 200px;
+      height: 80px;
+      transition: transform 0.3s ease;
+    }
+
+    .volver-container:hover {
+      transform: translateY(-10px);
+    }
+
+    .volver-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      text-decoration: none;
+      color: white;
+    }
+
+    .volver-background {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .volver-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 22px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* Pantalla de carga */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #loading-screen .gif-wrapper img {
+      width: 150px;
+      height: auto;
+    }
+
+    #loading-screen p {
+      margin-top: 20px;
+      font-size: 24px;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="volver-link">
+    <div class="volver-container">
+      <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/exacto.png" alt="Decoración Volver" class="volver-background" />
+      <div class="volver-text" id="volverText">Volver</div>
+    </div>
+  </a>
+
+  <div class="container">
+    <div class="card-link" data-target="Eclipse/catalogo.html">
+      <div class="card">
+        <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/a2.png" alt="Personaje 1" />
+        <div class="overlay"></div>
+      </div>
+    </div>
+    <div class="card-link" data-target="catalogo.html">
+      <div class="card">
+        <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/a1.png" alt="Personaje 2" />
+        <div class="overlay"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dialog-container">
+    <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/exacto.png" alt="Decoración" class="dialog-background" />
+    <div class="dialog-text" id="dialogText">Selecciona servidor</div>
+  </div>
+
+  <!-- Pantalla de carga -->
+  <div id="loading-screen">
+    <div class="gif-wrapper">
+      <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/qcuqelx.gif" alt="Cargando..." />
+    </div>
+    <p>Cargando Servicio...</p>
+  </div>
+
+  <script>
+    document.getElementById("dialogText").textContent = "Selecciona servidor";
+    document.getElementById("volverText").textContent = "Volver";
+
+    document.querySelectorAll(".card-link").forEach(card => {
+      card.addEventListener("click", function(e) {
+        e.preventDefault();
+        const target = this.getAttribute("data-target");
+
+        document.getElementById("loading-screen").style.display = "flex";
+
+        setTimeout(() => {
+          window.location.href = target;
+        }, 2000);
+      });
+    });
+  </script>
+
+  <!-- 🔥 SISTEMA ANTI-CACHÉ -->
+  <script src="version.js?v"></script>
+  <script src="force-update.js?v"></script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eclipse Overclock</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon único (se reescala automáticamente en PC, móviles y tablets) -->
+  <link rel="icon" href="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/eclipse-overclock-1.png" type="image/png" />
+</head>
+<body>
+  <header>
+    <div class="logo-text-header">Eclipse Overclock</div>
+    <button id="menu-toggle">☰</button>
+  </header>
+
+  <nav id="menu">
+    <ul>
+      <li><a href="selector.html">Catalogo</a></li>
+      <li><a href="noticias.html">Noticias</a></li>
+      <li><a href="buscador.html">Buscar</a></li>
+      <li><a href="Solicitar.html">Solicitud</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay">
+        <div class="hero-text">
+          <h2>Bienvenidos a <span class="highlight">Eclipse Overclock</span></h2>
+          <p>El Mejor lugar para descargar tus juegos favoritos</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="discord-call">
+      <h2>No olvide Seguir nuestro twitter!</h2>
+    </section>
+
+    <section class="discord-button">
+      <a href="https://discord.com/" class="discord-btn">¡Siguenos Ya!</a>
+    </section>
+
+    <!-- POR SUPUESTO CORREGIDO -->
+    <section class="discord-info balanced-layout">
+      <h2 class="discord-heading center">Por Supuesto</h2>
+      <div class="discord-content balanced">
+        <div class="discord-img-wrapper">
+          <img src="https://i.pinimg.com/236x/02/1a/83/021a83eb9675ec923038d11a494d85ca.jpg" alt="Personaje manga" class="discord-img" />
+        </div>
+        <div class="discord-text centered-block">
+          <p>Y Por supuesto si quieres Pedir algún Juego para que subamos puedes hacerlo desde nuestro apartado de <strong>«Solicitud»</strong>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('menu-toggle').onclick = () => {
+      document.getElementById('menu').classList.toggle('visible');
+    };
+  </script>
+
+  <!-- Sistema anti-cache -->
+  <script src="version.js?v"></script>
+  <script src="force-update.js?v"></script>
+
+</body>
+</html>

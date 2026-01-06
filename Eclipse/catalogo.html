@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de PC</title>
+  <link rel="stylesheet" href="style-cata.css" />
+
+    <!-- Favicon desde WordPress -->
+<link rel="icon" type="image/png" href="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/eclipse-overclock-1.png">
+
+  <style>
+    /* Header layout */
+    header {
+      display: flex;
+      justify-content: space-between; /* izquierda: título, derecha: acciones */
+      align-items: center;
+      padding: 20px;
+    }
+
+    .catalogo-titulo {
+      font-size: 32px;
+      color: white;
+      margin: 0; /* totalmente a la izquierda por el flex */
+    }
+
+    /* Grupo derecho: ☰ + Volver al inicio */
+    .right-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px; /* ☰ a la izquierda del botón decorativo */
+    }
+
+    /* Botón hamburguesa ☰ */
+    .dropdown {
+      position: relative;
+    }
+
+    .hamburger-btn {
+      background: #000;
+      border: 1px solid #555;
+      color: white;
+      font-size: 24px;
+      line-height: 1;
+      padding: 10px 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .hamburger-btn:hover {
+      transform: translateY(-2px);
+      background: #111;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      display: none;
+      flex-direction: column;
+      background-color: #111;
+      border: 1px solid #444;
+      padding: 10px;
+      min-width: 180px;
+      z-index: 1000;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    }
+
+    .dropdown-content a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 6px;
+      border-radius: 4px;
+    }
+
+    .dropdown-content a:hover {
+      background: #222;
+    }
+
+    .menu-sep {
+      border: none;
+      border-top: 1px solid #555;
+      margin: 8px 0;
+    }
+
+    .dropdown.show .dropdown-content {
+      display: flex;
+    }
+
+    /* Botón decorativo “Volver al inicio” */
+    .volver-container {
+      position: relative;
+      width: 220px;
+      height: 80px;
+      transition: transform 0.3s ease;
+    }
+
+    .volver-container:hover {
+      transform: translateY(-10px);
+    }
+
+    .volver-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      text-decoration: none;
+      color: white;
+    }
+
+    .volver-background {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .volver-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      white-space: nowrap;
+      pointer-events: none;
+      color: white;
+    }
+
+    /* Opcional: ajuste en móvil */
+    @media (max-width: 600px) {
+      .volver-container { width: 180px; height: 64px; }
+      .volver-text { font-size: 18px; }
+      .hamburger-btn { font-size: 22px; padding: 8px 12px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <!-- Izquierda: título totalmente a la izquierda -->
+    <h1 class="catalogo-titulo">Más Nuevo</h1>
+
+    <!-- Derecha: ☰ a la izquierda y “Volver al inicio” a la derecha -->
+    <div class="right-actions">
+      <div class="dropdown" aria-label="Navegación principal">
+        <button
+          class="hamburger-btn"
+          id="menu-btn"
+          aria-expanded="false"
+          aria-controls="menu-content"
+          aria-label="Abrir menú"
+        >
+          ☰
+        </button>
+        <div class="dropdown-content" id="menu-content" role="menu">
+          <a href="../index.html" role="menuitem">Inicio</a>
+          <a href="#" role="menuitem">Catálogo PC</a>
+          <a href="Catalogo-cell.html" role="menuitem">Catálogo Celular</a>
+          <a href="buscador.html" role="menuitem">Buscar</a>
+          <hr class="menu-sep">
+          <a href="catalogo.html" role="menuitem">Pedir un juego</a>
+          <a href="noticias.html" role="menuitem">Noticias</a>
+        </div>
+      </div>
+
+      <div class="volver-container">
+        <a href="../../index.html" class="volver-link" id="volverLink">
+          <img
+            src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/exacto.png"
+            alt="Decoración Volver"
+            class="volver-background"
+          />
+          <div class="volver-text" id="volverText">Volver al inicio</div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="catalogo-grid">
+
+    <div class="anime-card" onclick="location.href='../catalogo-Eclipse/Normals/NanoApostle'">
+      <div class="imagen-wrapper">
+        <div class="etiqueta-superior derecha">2024</div>
+        <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/nanooo.png" alt="NanoApostle" />
+      </div>
+      <h3>NanoApostle</h3>
+    </div>
+
+    <div class="anime-card" onclick="location.href='../catalogo-Eclipse/Normals/Hollow-Knight'">
+      <div class="imagen-wrapper">
+        <div class="etiqueta-superior derecha">2017</div>
+        <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/12/hollow-port.png" alt="Hollow Knight" />
+      </div>
+      <h3>Hollow Knight</h3>
+    </div>
+
+    <div class="anime-card" onclick="location.href='anime/owari.html'">
+      <div class="imagen-wrapper">
+        <div class="etiqueta-superior derecha">2012</div>
+        <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/12/worldbox-port.png" alt="WorldBox" />
+      </div>
+      <h3>WorldBox</h3>
+    </div>
+
+    <div class="anime-card" onclick="location.href='anime/divine.html'">
+      <div class="imagen-wrapper">
+        <div class="etiqueta-superior derecha">2012</div>
+        <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/12/devil-may-cry-collection-port.png" alt="Devil may cry HD collection" />
+      </div>
+      <h3>Devil May Cry HD collection</h3>
+    </div>
+
+    <div class="anime-card" onclick="location.href='anime/owari.html'">
+      <div class="imagen-wrapper">
+        <div class="etiqueta-superior derecha">2025</div>
+        <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/12/ykmet-strade-port.png" alt="YKMET Strade" />
+      </div>
+      <h3>YKMET Strade</h3>
+    </div>
+
+    <div class="anime-card" onclick="location.href='anime/owari.html'">
+      <div class="imagen-wrapper">
+        <div class="etiqueta-superior derecha">2025</div>
+        <img src="https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/12/hollow-knight-silksong-port.png" alt="Hollow Knight silksong" />
+      </div>
+      <h3>Hollow Knight silksong</h3>
+    </div>
+
+  </main>
+
+  <script>
+    // Texto y ruta del botón “Volver al inicio”
+    document.getElementById("volverText").textContent = "Volver al inicio";
+    document.getElementById("volverLink").setAttribute("href", "index.html");
+
+    // Toggle del menú hamburguesa
+    const menuBtn = document.getElementById("menu-btn");
+    const dropdown = document.querySelector(".dropdown");
+
+    menuBtn.addEventListener("click", function () {
+      const isOpen = dropdown.classList.toggle("show");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener("click", function (e) {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove("show");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  </script>
+
+  <!-- 🔥 SISTEMA ANTI-CACHÉ -->
+  <script src="../version.js?v"></script>
+  <script src="../force-update.js?v"></script>
+
+</body>
+</html>

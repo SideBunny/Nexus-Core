@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscador</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #212121;
+      color: #eee;
+    }
+    header h1 { color: #fff; }
+    main {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-left: 20px;
+      margin-bottom: 10px;
+      width: 100%;
+      max-width: 600px;
+    }
+    #search-input {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border: 1px solid #424242;
+      border-radius: 6px;
+      background-color: #2a2a2a;
+      color: #f5f5f5;
+      outline: none;
+    }
+    #search-input::placeholder { color: #bdbdbd; }
+    #search-input:focus {
+      border-color: #616161;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    }
+    button {
+      padding: 12px 16px;
+      font-size: 1rem;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background-color: #0056b3; }
+    #sugerencias {
+      margin-top: 20px;
+      padding: 0;
+      list-style: none;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #424242;
+      background: #2a2a2a;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 6px;
+      margin-left: 20px;
+    }
+    #sugerencias li {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #3a3a3a;
+      color: #e0e0e0;
+    }
+    #sugerencias li:hover { background-color: #333333; }
+    .sugerencia-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sugerencia-item img {
+      width: 60px;
+      height: auto;
+      border-radius: 4px;
+    }
+    .sugerencia-info { display: flex; flex-direction: column; }
+    .sugerencia-info strong {
+      font-size: 1em;
+      color: #fff;
+      font-weight: 600;
+    }
+    .sugerencia-info span {
+      font-size: 0.85em;
+      color: #b0b0b0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 style="text-align: center; margin-top: 20px;">Buscador de Series y Animes</h1>
+    <div style="text-align: center; margin-bottom: 20px;">
+      <a href="index.html"><button>🏠 Inicio</button></a>
+    </div>
+  </header>
+
+  <main>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Buscar..." oninput="mostrarSugerencias()" />
+      <button onclick="buscar()">🔍 Buscar</button>
+    </div>
+    <ul id="sugerencias"></ul>
+  </main>
+
+  <script>
+    const animes = [
+      {
+        alias: ["owari", "owari no", "owari no seraph"],
+        titulo: "Owari no Seraph",
+        ruta: "anime/owari.html",
+        tipo: "Anime",
+        imagen: "https://shardstore.wordpress.com/wp-content/uploads/2024/10/8-sin-titulo4_20241007213006.png?w=480"
+      },
+      {
+        alias: ["mieruko", "mieruko-chan"],
+        titulo: "Mieruko-chan",
+        ruta: "anime/Mieruko.html",
+        tipo: "Anime",
+        imagen: "https://nekonekonekogrr.wordpress.com/wp-content/uploads/2025/10/8-sin-titulo4_20241007213006.png"
+      },
+      {
+        alias: ["radiant"],
+        titulo: "Radiant",
+        ruta: "anime/radiant.html",
+        tipo: "Anime",
+        imagen: "https://shardstore.wordpress.com/wp-content/uploads/2024/10/rax.png?w=640"
+      },
+      {
+        alias: ["dragon ball"],
+        titulo: "Dragon Ball",
+        ruta: "anime/dragonball.html",
+        tipo: "Anime",
+        imagen: "https://omniverse07.wordpress.com/wp-content/uploads/2024/10/8-sin-titulo9-1.png"
+      },
+      {
+        alias: ["divine", "divine gate"],
+        titulo: "Divine Gate",
+        ruta: "anime/divine.html",
+        tipo: "Anime",
+        imagen: "https://omniverse07.wordpress.com/wp-content/uploads/2024/10/8-sin-titulo12.png"
+      }
+    ];
+
+    const series = [
+      {
+        alias: ["tio grand"],
+        titulo: "Tío Grand",
+        ruta: "serie/TioGrand.html",
+        tipo: "Serie",
+        imagen: "https://omniverse07.wordpress.com/wp-content/uploads/2024/10/8-sin-titulo10.png"
+      }
+    ];
+
+    const Eclipse = [
+      {
+        alias: ["Bendy And The Ink Machine", "Bendy", "Bendy and"],
+        titulo: "Bendy and the Ink Machine",
+        ruta: "catalogo-Eclipse/Normals/Survival-horror/Bendy-and-Machine.html",
+        tipo: "Juego Eclipse - Normals",
+        imagen: "https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/bwnwww.png"
+      },
+        {
+        alias: ["Nano", "NanoApostle", "Apotle"],
+        titulo: "NanoApostle",
+        ruta: "catalogo-Eclipse/Normals/NanoApostle.html",
+        tipo: "Juego Eclipse - Normals",
+        imagen: "https://eclipseoverclock.wordpress.com/wp-content/uploads/2025/11/nanooo.png"
+      }
+    ];
+
+    const peliculas = [
+      {
+        alias: ["your name", "kimi no na wa"],
+        titulo: "Your Name",
+        ruta: "peliculas/YourName.html",
+        tipo: "Película",
+        imagen: "https://example.com/yourname.jpg"
+      }
+    ];
+
+    const todasLasClaves = {};
+
+    [...animes, ...Eclipse, ...series, ...peliculas].forEach(item => {
+      item.alias.forEach(alias => {
+        todasLasClaves[alias.toLowerCase()] = item;
+      });
+    });
+
+    function buscar() {
+      const entrada = document.getElementById('search-input').value.trim().toLowerCase();
+      const resultado = todasLasClaves[entrada];
+      if (resultado) {
+        window.location.href = resultado.ruta;
+      } else {
+        alert("No se encontró ningún resultado para: " + entrada);
+      }
+    }
+
+    function mostrarSugerencias() {
+      const entrada = document.getElementById('search-input').value.trim().toLowerCase();
+      const sugerencias = document.getElementById('sugerencias');
+      sugerencias.innerHTML = "";
+      if (entrada.length === 0) return;
+
+      const coincidencias = Object.entries(todasLasClaves).filter(([clave]) => clave.includes(entrada));
+
+      coincidencias.forEach(([clave, datos]) => {
+        const item = document.createElement("li");
+        item.innerHTML = `
+          <div class="sugerencia-item">
+            <img src="${datos.imagen}" alt="${datos.titulo}" />
+            <div class="sugerencia-info">
+              <strong>${datos.titulo}</strong>
+              <span>${datos.tipo}</span>
+            </div>
+          </div>
+        `;
+        item.onclick = () => {
+          document.getElementById('search-input').value = clave;
+          sugerencias.innerHTML = "";
+          buscar();
+        };
+        sugerencias.appendChild(item);
+      });
+    }
+  </script>
+
+  <!-- 🔥 SISTEMA ANTI-CACHÉ -->
+  <script src="version.js?v"></script>
+  <script src="force-update.js?v"></script>
+
+</body>
+</html>
